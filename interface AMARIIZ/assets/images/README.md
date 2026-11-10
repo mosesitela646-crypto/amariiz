@@ -1,0 +1,2 @@
+# Images de la maquette AMARIIZ MILK
+Les huit fichiers SVG de ce dossier sont des illustrations vectorielles temporaires des variantes produit. Les huit photographies JPG finales présentes dans le ZIP de travail local n'ont pas pu être transférées par l'outil GitHub connecté, qui accepte ici les contenus texte mais pas les fichiers binaires locaux. Remplacer ces SVG par les huit photos JPG haute qualité avant publication. Le logo SVG et le visuel de présentation sont des éléments de maquette. Aucun logo UPL n'est utilisé.
