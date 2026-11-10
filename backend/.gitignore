@@ -1,0 +1,5 @@
+.env
+storage/logs/*.log
+storage/rate_limits/*.json
+uploads/*
+!uploads/.gitkeep
