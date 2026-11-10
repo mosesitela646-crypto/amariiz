@@ -1,13 +1,13 @@
 // AMARIIZ MILK — catalogue de démonstration
 const AMARIIZ_PRODUCTS=[
-{id:"YSV-P",name:"Yaourt avec sucre",flavour:"Vanille",size:"Petit format",volume:"250 ml",price:2500,image:"assets/images/01-yaourt-vanille-avec-sucre-250ml.jpg",tag:"Avec sucre"},
-{id:"YSSV-P",name:"Yaourt sans sucre",flavour:"Vanille",size:"Petit format",volume:"250 ml",price:2500,image:"assets/images/02-yaourt-vanille-sans-sucre-250ml.jpg",tag:"Sans sucre"},
-{id:"YSB-P",name:"Yaourt avec sucre",flavour:"Banane",size:"Petit format",volume:"250 ml",price:2500,image:"assets/images/03-yaourt-banane-avec-sucre-250ml.jpg",tag:"Avec sucre"},
-{id:"YSSB-P",name:"Yaourt sans sucre",flavour:"Banane",size:"Petit format",volume:"250 ml",price:2500,image:"assets/images/04-yaourt-banane-sans-sucre-250ml.jpg",tag:"Sans sucre"},
-{id:"YSV-G",name:"Yaourt avec sucre",flavour:"Vanille",size:"Grand format",volume:"500 ml",price:5000,image:"assets/images/05-yaourt-vanille-avec-sucre-500ml.jpg",tag:"Avec sucre"},
-{id:"YSSV-G",name:"Yaourt sans sucre",flavour:"Vanille",size:"Grand format",volume:"500 ml",price:5000,image:"assets/images/06-yaourt-vanille-sans-sucre-500ml.jpg",tag:"Sans sucre"},
-{id:"YSB-G",name:"Yaourt avec sucre",flavour:"Banane",size:"Grand format",volume:"500 ml",price:5000,image:"assets/images/07-yaourt-banane-avec-sucre-500ml.jpg",tag:"Avec sucre"},
-{id:"YSSB-G",name:"Yaourt sans sucre",flavour:"Banane",size:"Grand format",volume:"500 ml",price:5000,image:"assets/images/08-yaourt-banane-sans-sucre-500ml.jpg",tag:"Sans sucre"}];
+{id:"YSV-P",name:"Yaourt avec sucre",flavour:"Vanille",size:"Petit format",volume:"250 ml",price:2500,image:"assets/images/01-yaourt-vanille-avec-sucre-250ml.svg",tag:"Avec sucre"},
+{id:"YSSV-P",name:"Yaourt sans sucre",flavour:"Vanille",size:"Petit format",volume:"250 ml",price:2500,image:"assets/images/02-yaourt-vanille-sans-sucre-250ml.svg",tag:"Sans sucre"},
+{id:"YSB-P",name:"Yaourt avec sucre",flavour:"Banane",size:"Petit format",volume:"250 ml",price:2500,image:"assets/images/03-yaourt-banane-avec-sucre-250ml.svg",tag:"Avec sucre"},
+{id:"YSSB-P",name:"Yaourt sans sucre",flavour:"Banane",size:"Petit format",volume:"250 ml",price:2500,image:"assets/images/04-yaourt-banane-sans-sucre-250ml.svg",tag:"Sans sucre"},
+{id:"YSV-G",name:"Yaourt avec sucre",flavour:"Vanille",size:"Grand format",volume:"500 ml",price:5000,image:"assets/images/05-yaourt-vanille-avec-sucre-500ml.svg",tag:"Avec sucre"},
+{id:"YSSV-G",name:"Yaourt sans sucre",flavour:"Vanille",size:"Grand format",volume:"500 ml",price:5000,image:"assets/images/06-yaourt-vanille-sans-sucre-500ml.svg",tag:"Sans sucre"},
+{id:"YSB-G",name:"Yaourt avec sucre",flavour:"Banane",size:"Grand format",volume:"500 ml",price:5000,image:"assets/images/07-yaourt-banane-avec-sucre-500ml.svg",tag:"Avec sucre"},
+{id:"YSSB-G",name:"Yaourt sans sucre",flavour:"Banane",size:"Grand format",volume:"500 ml",price:5000,image:"assets/images/08-yaourt-banane-sans-sucre-500ml.svg",tag:"Sans sucre"}];
 const fc=n=>new Intl.NumberFormat("fr-FR").format(n)+" FC";
 function card(p){const prefix=location.pathname.includes("/pages/")?"../":"";return `<div class="col-6 col-lg-3"><article class="product-card"><div class="product-image"><img src="${prefix}${p.image}" alt="${p.name} ${p.flavour}"></div><div class="d-flex justify-content-between align-items-center mt-3"><span class="tag">${p.tag}</span><span class="small-muted">${p.volume}</span></div><h5>${p.name}</h5><div class="product-meta">${p.flavour} · ${p.size}</div><div class="d-flex align-items-center justify-content-between mt-3"><span class="product-price">${fc(p.price)}</span><button class="btn btn-brand btn-sm add-cart" data-id="${p.id}" aria-label="Ajouter au panier"><i class="bi bi-plus-lg"></i></button></div></article></div>`}
 const featured=document.getElementById("featuredProducts");if(featured)featured.innerHTML=AMARIIZ_PRODUCTS.slice(0,4).map(card).join("");
