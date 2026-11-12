@@ -1,0 +1,24 @@
+﻿# Fichiers sensibles
+.env
+.env.*
+!.env.example
+
+# Dépendances
+vendor/
+node_modules/
+
+# Sauvegardes
+*.bak
+*.bak-*
+*.old
+*.backup
+
+# Fichiers temporaires
+*.log
+*.tmp
+diff-amariiz.txt
+
+# Système
+.DS_Store
+Thumbs.db
+desktop.ini
