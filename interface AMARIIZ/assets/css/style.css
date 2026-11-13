@@ -334,3 +334,94 @@ body{
   #produits:before{height:35%;opacity:.42}
   .story:after{width:100%;right:-45%;opacity:.25}
 }
+
+
+/* -------------------------------------------------------
+   AMARIIZ — publicité compacte, proportionnée et soignée
+   Cette règle unique domine les anciens essais de dimensions.
+-------------------------------------------------------- */
+#video-amariiz{
+  padding:42px 0 !important;
+  background:
+    radial-gradient(circle at 8% 24%,rgba(255,255,255,.95) 0 10px,transparent 11px),
+    radial-gradient(circle at 92% 70%,rgba(255,255,255,.88) 0 15px,transparent 16px),
+    linear-gradient(120deg,#e9f3ff 0%,#f8fbff 54%,#fff5dc 100%);
+}
+#video-amariiz .container{
+  position:relative;
+}
+#video-amariiz .amariiz-ad-card{
+  width:min(100%,760px);
+  margin-inline:auto;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 200px;
+  align-items:center;
+  gap:24px;
+  padding:22px 26px;
+  border:1px solid #d9e7f8;
+  border-radius:22px;
+  background:rgba(255,255,255,.94);
+  box-shadow:0 12px 34px rgba(16,43,104,.09);
+}
+#video-amariiz .amariiz-ad-copy .eyebrow{
+  margin-bottom:10px;
+  font-size:.66rem;
+}
+#video-amariiz .amariiz-ad-copy h2{
+  margin:0 0 10px;
+  font-size:clamp(1.75rem,2.8vw,2.45rem);
+  line-height:1.08;
+}
+#video-amariiz .amariiz-ad-copy p{
+  max-width:390px;
+  margin:0 0 16px;
+  color:#68758a;
+  font-size:.88rem;
+  line-height:1.65;
+}
+#video-amariiz .amariiz-ad-copy .btn{
+  padding:9px 14px;
+  font-size:.84rem;
+}
+#video-amariiz .amariiz-video-frame{
+  width:200px !important;
+  height:113px !important;
+  min-width:0 !important;
+  max-width:200px !important;
+  max-height:113px !important;
+  justify-self:center;
+  overflow:hidden;
+  aspect-ratio:16/9;
+  border:4px solid #fff;
+  border-radius:13px;
+  background:#102b68;
+  box-shadow:0 9px 22px rgba(16,43,104,.17);
+}
+#video-amariiz .amariiz-video-frame video{
+  display:block;
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain;
+  background:#102b68;
+}
+@media(max-width:767px){
+  #video-amariiz{padding:30px 0 !important}
+  #video-amariiz .amariiz-ad-card{
+    width:min(100%,520px);
+    grid-template-columns:1fr;
+    gap:16px;
+    padding:20px;
+    text-align:center;
+  }
+  #video-amariiz .amariiz-ad-copy .eyebrow{justify-content:center}
+  #video-amariiz .amariiz-ad-copy p{margin-inline:auto}
+  #video-amariiz .amariiz-video-frame{
+    width:190px !important;
+    height:107px !important;
+    max-width:190px !important;
+    max-height:107px !important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  #video-amariiz *{scroll-behavior:auto}
+}
