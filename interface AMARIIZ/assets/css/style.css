@@ -707,3 +707,54 @@ body{
   .order-page .order-choice-heading strong{font-size:.9rem}
   .order-page .order-choice-heading small{font-size:.75rem}
 }
+
+
+/* FIX CONTRASTE — bandeau "SIMPLE ET DIRECT" sur l'accueil */
+#commande.order-band{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  color:#fff !important;
+  background:
+    linear-gradient(112deg,rgba(11,36,84,.98) 0%,rgba(16,43,104,.97) 58%,rgba(23,75,154,.96) 100%),
+    url("../images/milk-splash.svg") center/cover no-repeat !important;
+}
+#commande.order-band .eyebrow,
+#commande.order-band .eyebrow.light{
+  color:#f0d477 !important;
+  opacity:1 !important;
+}
+#commande.order-band h2{
+  color:#fff !important;
+  opacity:1 !important;
+  text-shadow:0 2px 12px rgba(0,0,0,.12);
+}
+#commande.order-band p{
+  color:#e6efff !important;
+  opacity:1 !important;
+}
+#commande.order-band small{
+  color:#d8e5fb !important;
+  opacity:1 !important;
+}
+#commande.order-band .btn-gold{
+  color:#102b68 !important;
+  background:#e0b83f !important;
+  border:1px solid #e0b83f !important;
+  box-shadow:0 9px 22px rgba(0,0,0,.16);
+}
+#commande.order-band:after{
+  z-index:0;
+  opacity:.13;
+  pointer-events:none;
+}
+#commande.order-band .container{
+  position:relative;
+  z-index:1;
+}
+@media(max-width:575px){
+  #commande.order-band{padding-block:52px !important}
+  #commande.order-band h2{font-size:2.35rem;line-height:1.06}
+  #commande.order-band p{font-size:.95rem;line-height:1.7}
+  #commande.order-band .btn-gold{width:100%;max-width:340px}
+}
