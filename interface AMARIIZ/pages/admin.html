@@ -82,7 +82,7 @@
         </div>
         <p id="adminRefreshStatus" class="small admin-muted" aria-live="polite">Chargement des données…</p>
         <div class="row g-3">
-          <div class="col-6 col-xl-3"><div class="admin-card"><div class="metric-icon"><i class="bi bi-cash-stack"></i></div><small>Ventes nettes (hors annulations)</small><strong id="kpiSales">—</strong></div></div>
+          <div class="col-6 col-xl-3"><div class="admin-card"><div class="metric-icon"><i class="bi bi-cash-stack"></i></div><small>Valeur des commandes (hors annulations)</small><strong id="kpiSales">—</strong></div></div>
           <div class="col-6 col-xl-3"><div class="admin-card"><div class="metric-icon"><i class="bi bi-receipt"></i></div><small>Commandes</small><strong id="kpiOrders">—</strong></div></div>
           <div class="col-6 col-xl-3"><div class="admin-card"><div class="metric-icon"><i class="bi bi-people"></i></div><small>Comptes clients</small><strong id="kpiClients">—</strong></div></div>
           <div class="col-6 col-xl-3"><div class="admin-card"><div class="metric-icon"><i class="bi bi-hourglass-split"></i></div><small>À préparer</small><strong id="kpiPending">—</strong></div></div>
@@ -108,9 +108,11 @@
         <div id="orderDetail" class="admin-detail" aria-live="polite"></div>
       </section>
 
+      <div class="alert alert-info mt-3 mb-0">Sécurité : les mots de passe des clients ne sont jamais affichés dans l'administration. Ils sont conservés sous forme de hachage sécurisé ; même l'administrateur ne peut pas lire le mot de passe original.</div>
+
       <section id="clients" class="admin-panel admin-section-anchor">
         <div><h2>Clients enregistrés</h2><p class="panel-sub">Coordonnées, nombre de commandes, valeur cumulée et dernière activité.</p></div>
-        <div class="table-responsive"><table class="table admin-table"><thead><tr><th>Client</th><th>Téléphone</th><th>Commandes</th><th>Valeur cumulée</th><th>Dernière commande</th></tr></thead><tbody id="adminClients"><tr><td colspan="5">Chargement…</td></tr></tbody></table></div>
+        <div class="table-responsive"><table class="table admin-table"><thead><tr><th>Client</th><th>Téléphone</th><th>Commandes</th><th>Commandes cumulées (hors annulations)</th><th>Dernière commande</th></tr></thead><tbody id="adminClients"><tr><td colspan="5">Chargement…</td></tr></tbody></table></div>
       </section>
 
       <section id="reviews" class="admin-panel admin-section-anchor">
