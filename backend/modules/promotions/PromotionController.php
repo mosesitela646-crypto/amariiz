@@ -63,23 +63,69 @@ final class PromotionController
     public function update(array $params): never
     {
         $this->auth->requireRoles(['admin']);
+        $id = (int)$params['id'];
+        $stmt = $this->pdo->prepare('SELECT discount_type,discount_value,starts_at,ends_at FROM promotions WHERE id=:id');
+        $stmt->execute(['id'=>$id]);
+        $current = $stmt->fetch();
+        if (!$current) Response::error('Promotion introuvable.',404);
+
         $d = Request::json();
-        $allowed = ['title','description','discount_type','discount_value','starts_at','ends_at','max_uses','is_active'];
-        $fields = []; $values = ['id'=>(int)$params['id']];
-        if (array_key_exists('title',$d)) { $title=trim((string)$d['title']); if ($title==='') Response::error('Titre invalide.',422); $fields[]='title=:title'; $values['title']=$title; }
-        if (array_key_exists('description',$d)) { $fields[]='description=:description'; $values['description']=trim((string)$d['description']) ?: null; }
-        if (array_key_exists('discount_type',$d)) { if (!in_array($d['discount_type'],['percent','fixed'],true)) Response::error('Type de remise invalide.',422); $fields[]='discount_type=:type'; $values['type']=$d['discount_type']; }
-        if (array_key_exists('discount_value',$d)) { if (!is_numeric($d['discount_value']) || (float)$d['discount_value']<=0 || (($d['discount_type'] ?? 'fixed')==='percent' && (float)$d['discount_value']>100)) Response::error('Valeur de remise invalide.',422); $fields[]='discount_value=:value'; $values['value']=(float)$d['discount_value']; }
-        foreach (['starts_at','ends_at'] as $f) if (array_key_exists($f,$d)) { $date=$this->dateValue($d[$f]); if (!$date) Response::error('Date invalide.',422); $fields[]="$f=:$f"; $values[$f]=$date; }
-        if (array_key_exists('max_uses',$d)) { $max=$d['max_uses']===''||$d['max_uses']===null?null:(int)$d['max_uses']; if ($max!==null && $max<1) Response::error('Nombre d’utilisations invalide.',422); $fields[]='max_uses=:max_uses'; $values['max_uses']=$max; }
-        if (array_key_exists('is_active',$d)) { $fields[]='is_active=:is_active'; $values['is_active']=$d['is_active']?1:0; }
-        if (!$fields) Response::error('Aucune modification fournie.',422);
-        $stmt=$this->pdo->prepare('UPDATE promotions SET '.implode(',',$fields).' WHERE id=:id');
-        $stmt->execute($values);
-        if ($stmt->rowCount()===0) {
-            $check=$this->pdo->prepare('SELECT id FROM promotions WHERE id=:id'); $check->execute(['id'=>$values['id']]);
-            if (!$check->fetch()) Response::error('Promotion introuvable.',404);
+        $fields = [];
+        $values = ['id'=>$id];
+
+        if (array_key_exists('title',$d)) {
+            $title = trim((string)$d['title']);
+            if ($title === '') Response::error('Titre invalide.',422);
+            $fields[] = 'title=:title';
+            $values['title'] = $title;
         }
+        if (array_key_exists('description',$d)) {
+            $fields[] = 'description=:description';
+            $values['description'] = trim((string)$d['description']) ?: null;
+        }
+
+        $nextType = $d['discount_type'] ?? $current['discount_type'];
+        $nextValue = $d['discount_value'] ?? $current['discount_value'];
+        if (!in_array($nextType,['percent','fixed'],true) || !is_numeric($nextValue) || (float)$nextValue <= 0 || ($nextType === 'percent' && (float)$nextValue > 100)) {
+            Response::error('Type ou valeur de remise invalide.',422);
+        }
+        if (array_key_exists('discount_type',$d)) {
+            $fields[] = 'discount_type=:discount_type';
+            $values['discount_type'] = $nextType;
+        }
+        if (array_key_exists('discount_value',$d)) {
+            $fields[] = 'discount_value=:discount_value';
+            $values['discount_value'] = (float)$nextValue;
+        }
+
+        $nextStart = array_key_exists('starts_at',$d) ? $this->dateValue($d['starts_at']) : $current['starts_at'];
+        $nextEnd = array_key_exists('ends_at',$d) ? $this->dateValue($d['ends_at']) : $current['ends_at'];
+        if (!$nextStart || !$nextEnd || $nextEnd <= $nextStart) {
+            Response::error('La période de promotion est invalide.',422);
+        }
+        if (array_key_exists('starts_at',$d)) {
+            $fields[] = 'starts_at=:starts_at';
+            $values['starts_at'] = $nextStart;
+        }
+        if (array_key_exists('ends_at',$d)) {
+            $fields[] = 'ends_at=:ends_at';
+            $values['ends_at'] = $nextEnd;
+        }
+
+        if (array_key_exists('max_uses',$d)) {
+            $max = $d['max_uses'] === '' || $d['max_uses'] === null ? null : (int)$d['max_uses'];
+            if ($max !== null && $max < 1) Response::error('Nombre d’utilisations invalide.',422);
+            $fields[] = 'max_uses=:max_uses';
+            $values['max_uses'] = $max;
+        }
+        if (array_key_exists('is_active',$d)) {
+            $fields[] = 'is_active=:is_active';
+            $values['is_active'] = $d['is_active'] ? 1 : 0;
+        }
+
+        if (!$fields) Response::error('Aucune modification fournie.',422);
+        $stmt = $this->pdo->prepare('UPDATE promotions SET '.implode(',',$fields).' WHERE id=:id');
+        $stmt->execute($values);
         Response::success(null,'Promotion mise à jour.');
     }
 
