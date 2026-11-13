@@ -99,6 +99,11 @@
 
       <section id="orders" class="admin-panel admin-section-anchor">
         <div class="d-flex justify-content-between align-items-center gap-2 flex-wrap"><div><h2>Toutes les commandes</h2><p class="panel-sub">Consultez les demandes, ouvrez le détail et mettez à jour leur avancement.</p></div><i class="bi bi-receipt fs-3 text-primary"></i></div>
+        <div class="d-flex gap-2 flex-wrap mt-3">
+          <input id="adminOrderSearch" class="form-control" style="max-width:280px" placeholder="Rechercher nom ou téléphone">
+          <select id="adminOrderStatus" class="form-select" style="max-width:190px"><option value="">Tous les statuts</option><option value="a_preparer">À préparer</option><option value="en_livraison">En livraison</option><option value="livree">Livrée</option><option value="annulee">Annulée</option></select>
+          <button id="adminOrderFilter" class="btn btn-outline-primary">Filtrer les commandes</button>
+        </div>
         <div class="table-responsive"><table class="table admin-table"><thead><tr><th>Référence / date</th><th>Client</th><th>Ville</th><th>Total</th><th>État</th><th>Modifier l'état</th><th>Actions</th></tr></thead><tbody id="adminOrders"><tr><td colspan="7">Chargement…</td></tr></tbody></table></div>
         <div id="orderDetail" class="admin-detail" aria-live="polite"></div>
       </section>
