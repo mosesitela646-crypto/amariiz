@@ -198,3 +198,139 @@ body{
   .amariiz-ad-card{padding:16px}
   .hero:before{height:30%;opacity:.5}
 }
+
+
+/* AMARIIZ — décor lacté plus présent et lecteur compact */
+body{
+  background:
+    radial-gradient(circle at 7% 18%,rgba(202,225,255,.48) 0 5px,transparent 6px),
+    radial-gradient(circle at 92% 30%,rgba(213,234,255,.56) 0 8px,transparent 9px),
+    radial-gradient(ellipse at 12% 45%,rgba(228,240,255,.65),transparent 30%),
+    radial-gradient(ellipse at 90% 72%,rgba(255,241,207,.52),transparent 28%),
+    #f6f9fe;
+}
+.hero{
+  background:
+    radial-gradient(ellipse at 84% 34%,rgba(205,226,255,.78),transparent 34%),
+    linear-gradient(120deg,#eff6ff 0%,#fff 48%,#fff6e6 100%);
+}
+.hero:before{
+  background:url("../images/milk-splash.svg") center bottom/cover no-repeat;
+  opacity:.92;
+}
+.trust-strip{
+  background:linear-gradient(90deg,#e4f0ff 0%,#fff 48%,#fff4d7 100%);
+}
+#produits{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:linear-gradient(135deg,#f3f8ff 0%,#fff 58%,#fff9eb 100%);
+}
+#produits:before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:auto -5% -20% -5%;
+  height:58%;
+  background:url("../images/milk-splash.svg") center bottom/cover no-repeat;
+  opacity:.55;
+  pointer-events:none;
+}
+#produits .product-card{
+  background:rgba(255,255,255,.94);
+  border-color:#dce9f8;
+  box-shadow:0 10px 28px rgba(23,75,154,.06);
+}
+.story{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:linear-gradient(125deg,#eaf3ff 0%,#f8fbff 55%,#fff7e5 100%);
+}
+.story:after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:54%;
+  height:100%;
+  right:-10%;
+  top:0;
+  background:url("../images/milk-splash.svg") center/contain no-repeat;
+  opacity:.54;
+  pointer-events:none;
+}
+.amariiz-ad{
+  background:
+    radial-gradient(ellipse at 10% 88%,rgba(255,255,255,.92),transparent 35%),
+    linear-gradient(130deg,#e1efff 0%,#f4f9ff 52%,#fff1cf 100%);
+}
+.amariiz-ad:before{
+  width:57%;
+  right:-9%;
+  opacity:.95;
+  background:url("../images/milk-splash.svg") center/contain no-repeat;
+}
+.amariiz-ad-card{
+  max-width:900px;
+  margin-inline:auto;
+  grid-template-columns:minmax(0,1fr) minmax(0,.62fr);
+  gap:22px;
+  padding:22px 26px;
+  border:1px solid rgba(177,202,235,.78);
+  background:rgba(255,255,255,.92);
+  box-shadow:0 16px 42px rgba(16,43,104,.09);
+}
+.amariiz-ad-copy h2{font-size:clamp(1.9rem,3vw,2.7rem)}
+.amariiz-ad-copy p{font-size:.9rem;margin-bottom:18px}
+.amariiz-video-frame{
+  width:100%;
+  max-width:250px;
+  max-height:141px;
+  justify-self:center;
+  border:4px solid #fff;
+  border-radius:14px;
+  background:#102b68;
+  box-shadow:0 10px 26px rgba(16,43,104,.16);
+  aspect-ratio:16/9;
+}
+.amariiz-video-frame video{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#102b68;
+}
+.order-band{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:
+    linear-gradient(115deg,rgba(16,43,104,.97),rgba(23,75,154,.94)),
+    url("../images/milk-splash.svg") center/cover no-repeat;
+}
+.order-band:after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  right:-2%;top:-28%;
+  width:42%;height:150%;
+  background:url("../images/milk-splash.svg") center/contain no-repeat;
+  opacity:.2;
+  pointer-events:none;
+}
+.footer{
+  background:
+    radial-gradient(ellipse at 85% 0%,rgba(68,126,196,.28),transparent 34%),
+    #0b2454;
+}
+@media(max-width:991px){
+  .amariiz-ad-card{grid-template-columns:1fr;max-width:650px;padding:20px}
+  .amariiz-video-frame{max-width:250px;max-height:141px;justify-self:center}
+  .story:after{width:75%;right:-28%;opacity:.35}
+}
+@media(max-width:575px){
+  .amariiz-ad-card{padding:16px}
+  .amariiz-video-frame{max-width:230px;max-height:130px}
+  #produits:before{height:35%;opacity:.42}
+  .story:after{width:100%;right:-45%;opacity:.25}
+}
