@@ -32,3 +32,61 @@
 @keyframes amariiz-cow-bob{0%,100%{translate:0 0}50%{translate:0 -5px}}
 @media(max-width:575px){.hero-cow-badge{top:8px;right:4px;width:84px;padding:6px;border-radius:14px}.hero-cow-badge img{width:46px;height:46px}.hero-cow-badge span{font-size:.62rem}}
 @media(prefers-reduced-motion:reduce){.brand img,.hero-cow-badge{animation:none!important;transition:none!important}}
+
+
+/* Correctifs visuels : publicité compacte et mascotte vache visible */
+.amariiz-ad-card{
+  grid-template-columns:minmax(0,1fr) minmax(0,.9fr);
+  gap:28px;
+  padding:clamp(20px,3vw,36px);
+}
+.amariiz-video-frame{
+  width:100%;
+  max-width:420px;
+  max-height:236px;
+  justify-self:end;
+  aspect-ratio:16/9;
+}
+.amariiz-video-frame video{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#07152f;
+}
+.hero-cow-badge{
+  top:12px;
+  right:12px;
+  width:150px;
+  min-height:166px;
+  padding:10px;
+  border:2px solid #a9c8f2;
+  border-radius:22px;
+  background:#fff;
+  box-shadow:0 15px 38px #102b6840;
+}
+.hero-cow-badge img{
+  display:block;
+  width:118px;
+  height:118px;
+  object-fit:contain;
+}
+.hero-cow-badge span{
+  display:block;
+  color:#174b9a;
+  font-size:.78rem;
+  font-weight:900;
+  line-height:1.2;
+}
+@media(max-width:991px){
+  .amariiz-ad-card{grid-template-columns:1fr;gap:22px}
+  .amariiz-video-frame{justify-self:center;max-width:520px;max-height:none}
+}
+@media(max-width:575px){
+  .amariiz-video-frame{max-width:100%;max-height:none}
+  .hero-cow-badge{width:108px;min-height:120px;top:5px;right:5px;padding:6px;border-radius:16px}
+  .hero-cow-badge img{width:82px;height:82px}
+  .hero-cow-badge span{font-size:.65rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-cow-badge{animation:none!important;transition:none!important}
+}
