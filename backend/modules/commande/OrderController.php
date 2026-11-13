@@ -138,7 +138,7 @@ final class OrderController
     public function mine(): never
     {
         $user = $this->auth->requireRoles(['client']);
-        $stmt = $this->pdo->prepare('SELECT o.id,o.total,o.discount_amount,o.reception_mode,o.status,o.created_at,c.name AS city_name FROM orders o JOIN cities c ON c.id=o.city_id WHERE o.phone=:phone ORDER BY o.created_at DESC');
+        $stmt = $this->pdo->prepare('SELECT o.id,o.total,o.discount_amount,o.reception_mode,o.status,o.created_at,c.name AS city_name,r.rating AS review_rating,r.comment AS review_comment FROM orders o JOIN cities c ON c.id=o.city_id LEFT JOIN reviews r ON r.order_id=o.id WHERE o.phone=:phone ORDER BY o.created_at DESC');
         $stmt->execute(['phone'=>$user['phone']]);
         Response::success($stmt->fetchAll(),'Historique des commandes.');
     }
