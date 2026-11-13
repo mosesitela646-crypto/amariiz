@@ -90,3 +90,111 @@
 @media(prefers-reduced-motion:reduce){
   .hero-cow-badge{animation:none!important;transition:none!important}
 }
+
+
+/* AMARIIZ — ambiance lactée et publicité plus discrète */
+body{
+  background:
+    radial-gradient(ellipse at 8% 14%,rgba(218,235,255,.55) 0,rgba(218,235,255,0) 28%),
+    radial-gradient(ellipse at 92% 38%,rgba(255,239,199,.34) 0,rgba(255,239,199,0) 26%),
+    #f8f9fc;
+}
+.topline{background:#102b68}
+.navbar{background:rgba(255,255,255,.94)!important;backdrop-filter:blur(14px)}
+.hero{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:linear-gradient(115deg,#f4f8ff 0%,#fff 52%,#fff8e9 100%);
+}
+.hero:before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:auto -4% -18% -4%;
+  height:48%;
+  background:url("../images/milk-splash.svg") center bottom/cover no-repeat;
+  opacity:.72;
+  pointer-events:none;
+}
+.hero:after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:360px;height:360px;border-radius:50%;
+  right:-120px;top:-160px;
+  background:radial-gradient(circle,rgba(214,232,255,.78),rgba(214,232,255,0) 70%);
+  pointer-events:none;
+}
+.section-space{background:transparent}
+.trust-strip{
+  background:linear-gradient(90deg,#eaf2ff,#fff,#fff8e9);
+  border-top:1px solid #e5edf8;
+  border-bottom:1px solid #e5edf8;
+}
+.amariiz-ad{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:linear-gradient(135deg,#eaf3ff 0%,#f8fbff 48%,#fff4d9 100%);
+}
+.amariiz-ad:before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:46%;height:100%;
+  right:-8%;top:0;
+  background:url("../images/milk-splash.svg") center/contain no-repeat;
+  opacity:.78;
+  pointer-events:none;
+}
+.amariiz-ad:after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:190px;height:190px;
+  left:-65px;bottom:-95px;
+  border-radius:50%;
+  background:radial-gradient(circle,#fff 0 30%,rgba(255,255,255,0) 72%);
+  pointer-events:none;
+}
+.amariiz-ad-card{
+  grid-template-columns:minmax(0,1fr) minmax(0,.72fr);
+  gap:24px;
+  padding:clamp(18px,2.6vw,30px);
+  border:1px solid rgba(177,202,235,.65);
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(8px);
+  box-shadow:0 18px 48px rgba(16,43,104,.10);
+}
+.amariiz-video-frame{
+  width:100%;
+  max-width:320px;
+  max-height:180px;
+  justify-self:center;
+  border:5px solid #fff;
+  border-radius:16px;
+  background:#102b68;
+  box-shadow:0 14px 34px rgba(16,43,104,.18);
+  aspect-ratio:16/9;
+}
+.amariiz-video-frame video{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#102b68;
+}
+.amariiz-ad-copy h2{font-size:clamp(2rem,3.4vw,3.1rem)}
+.amariiz-ad-copy p{font-size:.96rem}
+#produits,#entreprise,#commande{background:transparent}
+.section-head,.product-card,.panel,.story-card{background-color:rgba(255,255,255,.94)}
+@media(max-width:991px){
+  .amariiz-ad-card{grid-template-columns:1fr;gap:18px}
+  .amariiz-video-frame{max-width:320px;max-height:180px;justify-self:center}
+  .amariiz-ad:before{width:80%;right:-28%;opacity:.5}
+}
+@media(max-width:575px){
+  .amariiz-video-frame{max-width:min(100%,300px);max-height:none}
+  .amariiz-ad-card{padding:16px}
+  .hero:before{height:30%;opacity:.5}
+}
