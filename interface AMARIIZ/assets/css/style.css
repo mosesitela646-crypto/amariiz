@@ -425,3 +425,140 @@ body{
 @media(prefers-reduced-motion:reduce){
   #video-amariiz *{scroll-behavior:auto}
 }
+
+
+/* AMARIIZ — restauration du design de la page de commande */
+.order-page{
+  background:
+    radial-gradient(ellipse at 8% 28%,rgba(218,235,255,.48),transparent 32%),
+    radial-gradient(ellipse at 94% 72%,rgba(255,239,199,.34),transparent 30%),
+    #f7f9fd;
+}
+.order-page .page-hero{
+  padding:48px 0 42px;
+  background:
+    linear-gradient(115deg,rgba(234,243,255,.96),rgba(255,255,255,.96) 58%,rgba(255,248,230,.92)),
+    url("../images/milk-splash.svg") right bottom/auto 150% no-repeat;
+  border-bottom:1px solid #e5edf8;
+}
+.order-page .page-hero h1{font-size:clamp(2.5rem,4.5vw,4rem)}
+.order-page .page-hero p{max-width:620px;margin:14px 0 0;line-height:1.7}
+.order-page .order-main{padding:48px 0 76px}
+.order-page .order-layout{max-width:1120px;margin-inline:auto;align-items:stretch}
+.order-page .order-form-panel,
+.order-page .order-help-panel{
+  border:1px solid #dfe8f4;
+  border-radius:18px;
+  background:rgba(255,255,255,.97);
+  box-shadow:0 14px 38px rgba(16,43,104,.075);
+}
+.order-page .order-form-panel{padding:clamp(20px,3vw,32px)}
+.order-page .order-form-heading{margin-bottom:22px}
+.order-page .order-form-heading .eyebrow{margin-bottom:8px}
+.order-page .order-form-heading h4{font-size:1.35rem;font-weight:800;margin-bottom:6px}
+.order-page .order-form-heading p{color:var(--muted);font-size:.88rem;margin:0}
+.order-page .form-label{margin-bottom:7px;color:#293b56}
+.order-page .form-control,
+.order-page .form-select{
+  min-height:48px;
+  background-color:#fbfdff;
+  border:1px solid #d9e4f2;
+  border-radius:10px;
+  font-size:.92rem;
+}
+.order-page textarea.form-control{min-height:92px;resize:vertical}
+.order-page .form-control:focus,
+.order-page .form-select:focus{
+  background:#fff;
+  border-color:#6b9bd7;
+  box-shadow:0 0 0 .2rem rgba(23,75,154,.10);
+}
+.order-page .order-submit-row{border-top:1px solid #edf1f7;margin-top:24px;padding-top:4px}
+.order-page .order-submit-row .btn{min-height:48px;padding-inline:22px}
+.order-page .form-feedback{min-height:18px;margin-bottom:0}
+.order-page .order-help-panel{
+  position:relative;
+  overflow:hidden;
+  padding:clamp(22px,3vw,32px);
+  background:
+    linear-gradient(155deg,rgba(239,246,255,.98),rgba(255,255,255,.98) 58%,rgba(255,248,230,.95));
+}
+.order-page .order-help-panel:after{
+  content:"";
+  position:absolute;
+  right:-72px;
+  bottom:-90px;
+  width:250px;
+  height:220px;
+  background:url("../images/milk-splash.svg") center/contain no-repeat;
+  opacity:.42;
+  pointer-events:none;
+}
+.order-page .order-help-icon{
+  width:52px;height:52px;
+  display:grid;place-items:center;
+  margin-bottom:20px;
+  border-radius:15px;
+  color:var(--blue);
+  background:#fff;
+  border:1px solid #dbe8f8;
+  box-shadow:0 8px 20px rgba(23,75,154,.08);
+  font-size:1.45rem;
+}
+.order-page .order-help-panel .eyebrow{margin-bottom:9px}
+.order-page .order-help-panel h4{font-weight:800;font-size:1.35rem;margin-bottom:8px}
+.order-page .order-help-intro{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:24px}
+.order-page .order-steps{
+  position:relative;
+  z-index:1;
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.order-page .order-steps li{
+  display:flex;
+  align-items:flex-start;
+  gap:13px;
+  margin-bottom:19px;
+}
+.order-page .order-steps li>span{
+  flex:0 0 38px;
+  width:38px;height:38px;
+  display:grid;place-items:center;
+  border-radius:12px;
+  color:var(--blue);
+  background:#fff;
+  border:1px solid #dce8f7;
+  font-size:.76rem;
+  font-weight:900;
+}
+.order-page .order-steps b{display:block;color:#1d2c43;font-size:.91rem;margin:1px 0 3px}
+.order-page .order-steps small{display:block;color:var(--muted);font-size:.79rem;line-height:1.5}
+.order-page .order-note{
+  position:relative;z-index:1;
+  display:flex;align-items:flex-start;gap:10px;
+  margin-top:24px;padding:14px;
+  border:1px solid #f0dfb5;border-radius:12px;
+  background:rgba(255,250,235,.92);
+  color:#6e5b2f;font-size:.79rem;line-height:1.55;
+}
+.order-page .order-note i{font-size:1rem;margin-top:1px}
+.order-page .order-help-link{
+  position:relative;z-index:1;
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:22px;
+  color:var(--blue);text-decoration:none;font-size:.87rem;font-weight:800;
+}
+.order-page .order-help-link:hover{text-decoration:underline}
+@media(max-width:991px){
+  .order-page .order-main{padding:34px 0 58px}
+  .order-page .order-help-panel{min-height:auto}
+}
+@media(max-width:575px){
+  .order-page .page-hero{padding:34px 0 30px}
+  .order-page .order-main{padding:24px 0 42px}
+  .order-page .order-form-panel,
+  .order-page .order-help-panel{padding:20px;border-radius:15px}
+  .order-page .order-submit-row .btn{width:100%}
+  .order-page .order-steps li{margin-bottom:16px}
+}
