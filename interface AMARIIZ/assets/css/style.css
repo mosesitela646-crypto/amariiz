@@ -19,3 +19,16 @@
 @media(max-width:991px){.amariiz-ad-card{grid-template-columns:1fr;gap:26px}.amariiz-ad-copy{text-align:center}.amariiz-ad-copy .eyebrow{justify-content:center}.amariiz-ad-copy p{margin-inline:auto}.amariiz-video-frame{grid-row:1}}
 @media(max-width:575px){.amariiz-ad{padding-block:48px}.amariiz-ad-card{padding:18px;border-radius:18px}.amariiz-video-frame{border-radius:12px}}
 @media(prefers-reduced-motion:reduce){.hero-orbit,.hero-photo,.floating-price{animation:none!important;transition:none!important}}
+
+
+/* Identité visuelle AMARIIZ : emblème vache bleu */
+.brand img{transition:transform .45s cubic-bezier(.2,.75,.25,1),filter .45s ease;transform-origin:50% 58%}
+.brand:focus-visible img{outline:3px solid var(--gold);outline-offset:3px;border-radius:12px}
+.hero-cow-badge{position:absolute;z-index:3;top:12px;right:8px;width:106px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 9px 9px;border:1px solid #d9e7f8;border-radius:18px;background:rgba(255,255,255,.96);color:var(--blue);text-decoration:none;font-size:.68rem;font-weight:800;text-align:center;box-shadow:0 12px 30px #102b681c;transition:transform .35s ease,box-shadow .35s ease;animation:amariiz-cow-bob 5s ease-in-out infinite}
+.hero-cow-badge img{width:58px;height:58px;object-fit:contain}
+.hero-cow-badge span{line-height:1.2}
+.hero-cow-badge:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+@media(hover:hover) and (pointer:fine){.brand:hover img{transform:rotate(-7deg) scale(1.09);filter:drop-shadow(0 5px 7px #174b9a30)}.hero-cow-badge:hover{transform:translateY(-6px) rotate(3deg) scale(1.04);box-shadow:0 18px 38px #102b6830;color:var(--navy)}}
+@keyframes amariiz-cow-bob{0%,100%{translate:0 0}50%{translate:0 -5px}}
+@media(max-width:575px){.hero-cow-badge{top:8px;right:4px;width:84px;padding:6px;border-radius:14px}.hero-cow-badge img{width:46px;height:46px}.hero-cow-badge span{font-size:.62rem}}
+@media(prefers-reduced-motion:reduce){.brand img,.hero-cow-badge{animation:none!important;transition:none!important}}
