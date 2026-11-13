@@ -1,1 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220"><rect x="5" y="5" width="210" height="210" rx="48" fill="#12336f"/><path d="M50 118 Q110 30 170 118 Q110 190 50 118" fill="#12336ffff"/><text x="110" y="112" font-family="Georgia" font-style="italic" font-weight="bold" font-size="25" text-anchor="middle" fill="#12336f">AMARIIZ</text><text x="110" y="141" font-family="Arial" font-weight="bold" font-size="21" text-anchor="middle" fill="#12336f">MILK</text><path d="M76 160 Q110 174 144 160" stroke="#d5ad42" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="img" aria-labelledby="title desc">
+<title id="title">Emblème vache AMARIIZ MILK</title>
+<desc id="desc">Tête de vache stylisée dessinée en traits bleus.</desc>
+<rect x="5" y="5" width="210" height="210" rx="48" fill="#ffffff"/>
+<ellipse cx="110" cy="190" rx="53" ry="8" fill="#174b9a" opacity=".08"/>
+<!-- Oreilles -->
+<path d="M72 91C54 76 34 74 26 86C20 98 34 116 63 119L78 108Z" fill="#eaf2ff" stroke="#174b9a" stroke-width="7" stroke-linejoin="round"/>
+<path d="M148 91C166 76 186 74 194 86C200 98 186 116 157 119L142 108Z" fill="#eaf2ff" stroke="#174b9a" stroke-width="7" stroke-linejoin="round"/>
+<path d="M39 91Q52 88 65 104M181 91Q168 88 155 104" fill="none" stroke="#2f72c8" stroke-width="4" stroke-linecap="round"/>
+<!-- Cornes -->
+<path d="M78 75C66 66 65 52 72 43C84 48 91 59 91 72" fill="#fff" stroke="#174b9a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M142 75C154 66 155 52 148 43C136 48 129 59 129 72" fill="#fff" stroke="#174b9a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<!-- Tête -->
+<path d="M74 76C82 60 94 53 110 53C126 53 138 60 146 76C160 89 166 106 163 128C159 157 139 177 110 184C81 177 61 157 57 128C54 106 60 89 74 76Z" fill="#fff" stroke="#174b9a" stroke-width="7" stroke-linejoin="round"/>
+<!-- Taches -->
+<path d="M81 82C82 68 94 62 105 65C105 79 96 89 83 92Z" fill="#d6e7ff"/>
+<path d="M137 126C149 116 155 119 154 133C152 145 144 151 133 151C129 141 131 133 137 126Z" fill="#d6e7ff"/>
+<!-- Yeux -->
+<ellipse cx="88" cy="111" rx="5.5" ry="7" fill="#174b9a"/>
+<ellipse cx="132" cy="111" rx="5.5" ry="7" fill="#174b9a"/>
+<path d="M79 101Q88 96 97 101M123 101Q132 96 141 101" fill="none" stroke="#174b9a" stroke-width="4" stroke-linecap="round"/>
+<!-- Museau -->
+<path d="M78 139C80 123 93 119 110 119C127 119 140 123 142 139C144 156 130 167 110 168C90 167 76 156 78 139Z" fill="#eaf2ff" stroke="#174b9a" stroke-width="6"/>
+<ellipse cx="96" cy="143" rx="4.5" ry="6" fill="#174b9a"/>
+<ellipse cx="124" cy="143" rx="4.5" ry="6" fill="#174b9a"/>
+<path d="M110 150V158M99 159Q110 166 121 159" fill="none" stroke="#2f72c8" stroke-width="4" stroke-linecap="round"/>
+<!-- Goutte de lait -->
+<path d="M176 158C176 158 164 173 164 181A12 12 0 0 0 188 181C188 173 176 158 176 158Z" fill="#d5ad42" stroke="#174b9a" stroke-width="3"/>
+<path d="M173 179Q175 184 180 183" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+</svg>
