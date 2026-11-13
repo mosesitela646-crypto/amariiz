@@ -562,3 +562,148 @@ body{
   .order-page .order-submit-row .btn{width:100%}
   .order-page .order-steps li{margin-bottom:16px}
 }
+
+
+/* AMARIIZ — lisibilité renforcée et sélecteurs de yaourt */
+.order-page{
+  color:#17243a;
+}
+.order-page .page-hero .eyebrow,
+.order-page .order-form-heading .eyebrow,
+.order-page .order-help-panel .eyebrow{
+  color:#174b9a;
+  font-weight:900;
+}
+.order-page .page-hero h1,
+.order-page .order-form-heading h4,
+.order-page .order-help-panel h4{
+  color:#102b68;
+}
+.order-page .page-hero p,
+.order-page .order-form-heading p,
+.order-page .order-help-intro{
+  color:#4b5d75;
+  opacity:1;
+}
+.order-page .order-form-panel,
+.order-page .order-help-panel{
+  color:#17243a;
+}
+.order-page .form-label{
+  display:block;
+  color:#172f50 !important;
+  font-size:.9rem;
+  font-weight:800;
+  letter-spacing:.005em;
+}
+.order-page .form-control,
+.order-page .form-select{
+  color:#1b2c43 !important;
+  font-weight:600;
+  background-color:#fff !important;
+  border:1px solid #cbd9ec !important;
+  box-shadow:0 2px 5px rgba(16,43,104,.035);
+}
+.order-page .form-control::placeholder{
+  color:#738198 !important;
+  opacity:1;
+  font-weight:400;
+}
+.order-page .form-control:focus,
+.order-page .form-select:focus{
+  border-color:#3977be !important;
+  box-shadow:0 0 0 .22rem rgba(23,75,154,.14) !important;
+}
+.order-page .order-choice-heading{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  margin:11px 0 2px;
+  padding:14px 16px;
+  border:1px solid #cfe0f6;
+  border-radius:13px;
+  background:linear-gradient(100deg,#edf5ff,#f9fbff);
+}
+.order-page .order-choice-heading-secondary{
+  margin-top:13px;
+  background:linear-gradient(100deg,#fff7e5,#fffdf7);
+  border-color:#efdfb9;
+}
+.order-page .order-choice-number{
+  flex:0 0 38px;
+  width:38px;height:38px;
+  display:grid;place-items:center;
+  border-radius:11px;
+  color:#fff;
+  background:#174b9a;
+  font-size:.78rem;
+  font-weight:900;
+}
+.order-page .order-choice-heading-secondary .order-choice-number{
+  background:#b68c2b;
+  color:#fff;
+}
+.order-page .order-choice-heading strong{
+  display:block;
+  color:#102b68;
+  font-size:.98rem;
+  font-weight:900;
+  line-height:1.3;
+}
+.order-page .order-choice-heading small{
+  display:block;
+  margin-top:3px;
+  color:#52647d;
+  font-size:.8rem;
+  line-height:1.45;
+}
+.order-page .order-selected-product{
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  padding:11px 14px;
+  border:1px solid #cfe0f6;
+  border-radius:10px;
+  background:#f1f7ff;
+  color:#174b9a;
+  font-size:.84rem;
+  font-weight:800;
+  line-height:1.45;
+}
+.order-page .order-selected-product.is-unavailable{
+  color:#963b37;
+  background:#fff3f1;
+  border-color:#f0c9c4;
+}
+.order-page .order-steps b{
+  color:#172f50 !important;
+  font-size:.92rem;
+  font-weight:900;
+}
+.order-page .order-steps small{
+  color:#4d5e75 !important;
+  opacity:1;
+  font-size:.82rem;
+}
+.order-page .order-note{
+  color:#584719 !important;
+  font-weight:600;
+  opacity:1;
+}
+.order-page .order-help-panel .order-help-link{
+  color:#174b9a !important;
+  font-weight:900;
+}
+.order-page .form-feedback{
+  color:#a22d2d !important;
+  font-size:.85rem;
+  font-weight:700;
+}
+.order-page .form-feedback.text-success{
+  color:#17663b !important;
+}
+@media(max-width:575px){
+  .order-page .order-choice-heading{padding:12px;gap:10px}
+  .order-page .order-choice-heading strong{font-size:.9rem}
+  .order-page .order-choice-heading small{font-size:.75rem}
+}
