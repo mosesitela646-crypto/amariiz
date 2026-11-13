@@ -272,7 +272,20 @@ async function initCommander() {
       return;
     }
     try {
-      await addToCart(variant.value,quantity.value);
+      const authenticated = await api('/auth/me');
+      if (!['client','vendeur','admin'].includes(authenticated.role)) {
+        throw new Error('Connectez-vous avec un compte client pour enregistrer une commande.');
+      }
+      const cart = await api('/cart');
+      const selectedId = Number(variant.value);
+      const existingLine = (cart.items || []).find(item => Number(item.product_variant_id) === selectedId);
+      if (existingLine) {
+        await api('/cart/items/' + selectedId, {
+          method:'PATCH', body:JSON.stringify({quantity:Number(quantity.value)})
+        });
+      } else {
+        await addToCart(selectedId,quantity.value);
+      }
       const data = Object.fromEntries(new FormData(form));
       data.city_id = Number(data.city_id);
       const result = await api('/orders',{method:'POST',body:JSON.stringify(data)});
