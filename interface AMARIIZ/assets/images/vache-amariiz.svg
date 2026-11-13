@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="t d">
+<title id="t">Vache AMARIIZ</title><desc id="d">Tête de vache dessinée avec des traits bleus.</desc>
+<circle cx="120" cy="120" r="112" fill="#eef5ff"/>
+<path d="M72 76C45 55 25 60 24 79C23 99 43 116 72 112M168 76C195 55 215 60 216 79C217 99 197 116 168 112" fill="#fff" stroke="#174b9a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M75 74C64 55 66 38 80 28C94 38 99 53 96 72M165 74C176 55 174 38 160 28C146 38 141 53 144 72" fill="#fff" stroke="#174b9a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M75 72C86 58 102 52 120 52C138 52 154 58 165 72C184 86 192 111 187 145C181 183 154 206 120 214C86 206 59 183 53 145C48 111 56 86 75 72Z" fill="#fff" stroke="#174b9a" stroke-width="8" stroke-linejoin="round"/>
+<path d="M78 88C77 73 89 65 104 66C107 83 96 95 81 99Z" fill="#cfe2ff"/>
+<path d="M154 123C171 112 180 120 177 139C174 153 163 162 148 158C144 144 146 132 154 123Z" fill="#cfe2ff"/>
+<path d="M85 117Q96 109 107 117M133 117Q144 109 155 117" fill="none" stroke="#174b9a" stroke-width="5" stroke-linecap="round"/>
+<ellipse cx="96" cy="128" rx="6" ry="8" fill="#174b9a"/><ellipse cx="144" cy="128" rx="6" ry="8" fill="#174b9a"/>
+<path d="M83 157C85 139 100 135 120 135C140 135 155 139 157 157C159 176 143 189 120 190C97 189 81 176 83 157Z" fill="#eaf2ff" stroke="#174b9a" stroke-width="7"/>
+<ellipse cx="104" cy="158" rx="5" ry="7" fill="#174b9a"/><ellipse cx="136" cy="158" rx="5" ry="7" fill="#174b9a"/>
+<path d="M120 168V177M107 180Q120 190 133 180" fill="none" stroke="#2f72c8" stroke-width="5" stroke-linecap="round"/>
+<path d="M190 177C190 177 178 192 178 201A12 12 0 0 0 202 201C202 192 190 177 190 177Z" fill="#d5ad42" stroke="#174b9a" stroke-width="3"/>
+</svg>
