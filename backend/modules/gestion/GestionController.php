@@ -39,6 +39,20 @@ final class GestionController
         $stmt=$this->pdo->prepare('UPDATE orders SET status=:status WHERE id=:id');$stmt->execute(['status'=>$d['status'],'id'=>$order['id']]);$stmt=$this->pdo->prepare('INSERT INTO order_status_history (order_id,status,changed_by) VALUES (:order_id,:status,:changed_by)');$stmt->execute(['order_id'=>$order['id'],'status'=>$d['status'],'changed_by'=>$user['id']]);$this->pdo->commit();Response::success(['id'=>(int)$order['id'],'status'=>$d['status']],'Statut mis à jour.');}catch(\Throwable $e){if($this->pdo->inTransaction())$this->pdo->rollBack();throw $e;}
     }
 
+    public function clients(): never
+    {
+        $this->auth->requireRoles(['admin']);
+        $stmt = $this->pdo->query("SELECT u.id,u.name,u.phone,u.email,u.created_at,
+            COUNT(o.id) AS orders_count,
+            COALESCE(SUM(CASE WHEN o.status<>'annulee' THEN o.total ELSE 0 END),0) AS orders_value,
+            MAX(o.created_at) AS last_order_at
+            FROM users u LEFT JOIN orders o ON o.phone=u.phone
+            WHERE u.role='client'
+            GROUP BY u.id,u.name,u.phone,u.email,u.created_at
+            ORDER BY last_order_at DESC,u.created_at DESC");
+        Response::success($stmt->fetchAll(),'Clients et activité des commandes.');
+    }
+
     public function lowStock(): never
     {
         $this->auth->requireRoles(['admin']);$stmt=$this->pdo->query('SELECT pv.id,p.name,pv.composition,pv.flavor,pv.format,pv.stock_qty,pv.low_stock_threshold FROM product_variants pv JOIN products p ON p.id=pv.product_id WHERE pv.stock_qty<=pv.low_stock_threshold ORDER BY pv.stock_qty ASC');Response::success($stmt->fetchAll(),'Alertes de stock faible.');
@@ -47,7 +61,17 @@ final class GestionController
     public function dashboard(): never
     {
         $this->auth->requireRoles(['admin']);$from=$_GET['from']??date('Y-m-01');$to=$_GET['to']??date('Y-m-d');if(!preg_match('/^\d{4}-\d{2}-\d{2}$/',$from)||!preg_match('/^\d{4}-\d{2}-\d{2}$/',$to))Response::error('Période invalide.',422);$p=['from'=>$from.' 00:00:00','to'=>$to.' 23:59:59'];
-        $stmt=$this->pdo->prepare("SELECT COUNT(*) AS orders_count,COALESCE(SUM(CASE WHEN status<>'annulee' THEN total ELSE 0 END),0) AS sales,COALESCE(SUM(status='annulee'),0) AS cancellations FROM orders WHERE created_at BETWEEN :from AND :to");$stmt->execute($p);$data=['summary'=>$stmt->fetch()];
+        $stmt=$this->pdo->prepare("SELECT COUNT(*) AS orders_count,
+            COALESCE(SUM(status='a_preparer'),0) AS pending_orders,
+            COALESCE(SUM(status='en_livraison'),0) AS delivery_orders,
+            COALESCE(SUM(status='livree'),0) AS delivered_orders,
+            COALESCE(SUM(status='annulee'),0) AS cancellations,
+            COALESCE(SUM(CASE WHEN status<>'annulee' THEN total ELSE 0 END),0) AS sales,
+            COALESCE(SUM(discount_amount),0) AS discounts
+            FROM orders WHERE created_at BETWEEN :from AND :to");
+        $stmt->execute($p);$summary=$stmt->fetch();
+        $summary['clients_count']=(int)$this->pdo->query("SELECT COUNT(*) FROM users WHERE role='client'")->fetchColumn();
+        $data=['summary'=>$summary];
         $stmt=$this->pdo->prepare("SELECT p.name,COUNT(*) AS quantity FROM order_items oi JOIN orders o ON o.id=oi.order_id JOIN product_variants pv ON pv.id=oi.product_variant_id JOIN products p ON p.id=pv.product_id WHERE o.created_at BETWEEN :from AND :to AND o.status<>'annulee' GROUP BY p.id,p.name ORDER BY quantity DESC LIMIT 5");$stmt->execute($p);$data['top_products']=$stmt->fetchAll();
         $stmt=$this->pdo->prepare("SELECT c.name,COUNT(*) AS orders_count FROM orders o JOIN cities c ON c.id=o.city_id WHERE o.created_at BETWEEN :from AND :to AND o.status<>'annulee' GROUP BY c.id,c.name ORDER BY orders_count DESC LIMIT 5");$stmt->execute($p);$data['top_cities']=$stmt->fetchAll();Response::success($data,'Tableau de bord disponible.');
     }
