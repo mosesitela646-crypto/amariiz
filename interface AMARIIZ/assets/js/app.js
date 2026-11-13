@@ -317,6 +317,7 @@ async function initAdminDashboard() {
     authMessage.textContent = 'Ce compte ne possède pas les droits administrateur.';
     return;
   }
+  authMessage.classList.add('d-none');
   authMessage.textContent = '';
   const $ = id => document.getElementById(id);
   const setHtml = (id, html) => { if ($(id)) $(id).innerHTML = html; };
@@ -348,7 +349,14 @@ async function initAdminDashboard() {
   }
 
   async function loadOrders() {
-    const orders = await api('/seller/orders');
+    const filters = new URLSearchParams();
+    const search = document.getElementById('adminOrderSearch')?.value.trim();
+    const status = document.getElementById('adminOrderStatus')?.value;
+    if (search) filters.set('q',search);
+    if (status) filters.set('status',status);
+    if (from.value) filters.set('from',from.value);
+    if (to.value) filters.set('to',to.value);
+    const orders = await api('/seller/orders?' + filters.toString());
     setHtml('adminOrders',orders.map(order => '<tr>' +
       '<td>#' + esc(order.id) + '<small>' + esc(dateLabel(order.created_at)) + '</small></td>' +
       '<td><strong>' + esc(order.customer_name) + '</strong><small>' + esc(order.phone) + '</small></td>' +
@@ -406,7 +414,13 @@ async function initAdminDashboard() {
       setText('adminRefreshStatus','Données chargées depuis la base de données.');
     } catch (error) {
       setText('adminRefreshStatus',error.message);
-      if (error.status === 401 || error.status === 403) authMessage.textContent = error.message;
+      if (error.status === 401) {
+        authMessage.classList.remove('d-none');
+        authMessage.innerHTML = 'Votre session a expiré. <a href="connexion.html?redirect=admin.html">Reconnectez-vous</a>.';
+      } else if (error.status === 403) {
+        authMessage.classList.remove('d-none');
+        authMessage.textContent = error.message;
+      }
     }
   }
 
@@ -461,6 +475,7 @@ async function initAdminDashboard() {
   });
 
   $('adminApplyDates')?.addEventListener('click',loadAll);
+  $('adminOrderFilter')?.addEventListener('click',loadOrders);
   $('adminReload')?.addEventListener('click',loadAll);
   setText('adminUserName',currentUser()?.name || 'Administrateur');
   await loadAll();
