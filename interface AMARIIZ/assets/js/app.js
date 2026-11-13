@@ -144,15 +144,52 @@ async function initRegister() {
 async function initHistory() {
   const body = document.getElementById('ordersBody');
   if (!body) return;
+  if (!body.dataset.reviewsBound) {
+    body.dataset.reviewsBound = '1';
+    body.addEventListener('submit', async event => {
+      const form = event.target.closest('[data-review-form]');
+      if (!form) return;
+      event.preventDefault();
+      const button = form.querySelector('button[type="submit"]');
+      button.disabled = true;
+      const payload = Object.fromEntries(new FormData(form));
+      payload.rating = Number(payload.rating);
+      try {
+        await api('/orders/' + form.dataset.reviewForm + '/review', {
+          method:'POST', body:JSON.stringify(payload)
+        });
+        await initHistory();
+      } catch (error) {
+        const feedback = form.querySelector('.review-feedback');
+        feedback.textContent = error.message;
+        button.disabled = false;
+      }
+    });
+  }
   try {
     const orders = await api('/orders/mine');
-    body.innerHTML = orders.length ? orders.map(order =>
-      '<tr><td>#' + esc(order.id) + '</td><td>' + esc(order.city_name) +
-      '</td><td>' + fc(order.total) + '</td><td><span class="status">' +
-      esc(statusLabel(order.status)) + '</span></td></tr>'
-    ).join('') : '<tr><td colspan="4">Aucune commande enregistrée.</td></tr>';
+    body.innerHTML = orders.length ? orders.map(order => {
+      let review = '—';
+      if (order.review_rating) {
+        review = '<span class="review-stars">' + '★'.repeat(Math.max(0,Math.min(5,Number(order.review_rating)))) +
+          '</span> ' + esc(order.review_rating) + '/5' +
+          (order.review_comment ? '<small>' + esc(order.review_comment) + '</small>' : '');
+      } else if (order.status === 'livree') {
+        review = '<details><summary class="text-primary fw-semibold">Noter cette commande</summary>' +
+          '<form class="mt-2" data-review-form="' + Number(order.id) + '">' +
+          '<label class="form-label small" for="review-rating-' + Number(order.id) + '">Votre note</label>' +
+          '<select class="form-select form-select-sm mb-2" id="review-rating-' + Number(order.id) + '" name="rating" required>' +
+          '<option value="5">5 — Excellent</option><option value="4">4 — Très bien</option><option value="3">3 — Bien</option>' +
+          '<option value="2">2 — Moyen</option><option value="1">1 — Décevant</option></select>' +
+          '<textarea class="form-control form-control-sm mb-2" name="comment" rows="2" maxlength="1000" placeholder="Votre commentaire (facultatif)"></textarea>' +
+          '<button class="btn btn-sm btn-primary" type="submit">Envoyer mon avis</button><small class="review-feedback text-danger d-block mt-1"></small></form></details>';
+      }
+      return '<tr><td>#' + esc(order.id) + '<small>' + esc(dateLabel(order.created_at)) + '</small></td>' +
+        '<td>' + esc(order.city_name) + '</td><td>' + fc(order.total) + '</td>' +
+        '<td><span class="status">' + esc(statusLabel(order.status)) + '</span></td><td>' + review + '</td></tr>';
+    }).join('') : '<tr><td colspan="5">Aucune commande enregistrée.</td></tr>';
   } catch (error) {
-    body.innerHTML = '<tr><td colspan="4">' + esc(error.message) + '</td></tr>';
+    body.innerHTML = '<tr><td colspan="5">' + esc(error.message) + '</td></tr>';
   }
 }
 
