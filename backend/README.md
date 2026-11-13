@@ -6,8 +6,8 @@ Backend REST JSON en PHP 8 et MySQL, compatible XAMPP/Laragon.
 
 1. Copier `.env.example` vers `.env` et renseigner les identifiants MySQL.
 2. Créer la base `amariiz_milk`.
-3. Exécuter les migrations dans l'ordre : `101_users_tokens.sql`, `201_catalogue_villes.sql`, `102_orders_payments.sql`, puis `202_reviews.sql`.
-4. Exécuter `database/seeds/users_seed.sql`. Le mot de passe temporaire doit être remplacé avant toute mise en production.
+3. Exécuter les migrations dans l'ordre : `101_users_tokens.sql`, `201_catalogue_villes.sql`, `102_orders_payments.sql`, `202_reviews.sql`, puis `203_promotions.sql`.
+4. Exécuter `database/seeds/users_seed.sql` pour créer les comptes de démonstration. Le compte admin de test utilise `admin@amariiz.local` et le mot de passe temporaire `ChangeMe!2026`. Changez-le immédiatement avant toute utilisation réelle.
 5. Configurer le serveur Apache pour faire pointer le DocumentRoot vers `public/`.
 
 ## Endpoints Dev 1
@@ -27,7 +27,9 @@ Backend REST JSON en PHP 8 et MySQL, compatible XAMPP/Laragon.
 
 Les données de démonstration Dev 2 se trouvent dans `database/seeds/299_catalogue_villes_test.sql`.
 
-La documentation des routes destinées au frontend se trouve dans `docs/API.md`.
+La documentation des routes destinées au frontend se trouve dans `docs/API.md`. Le tableau de bord admin affiche les données réelles après connexion : commandes, clients, avis, ventes, alertes de stock et promotions.
+
+Les mots de passe sont enregistrés avec `password_hash()` et ne sont jamais retournés par l'API d'administration. Aucun écran admin ne doit afficher un mot de passe ou un hash.
 
 
 ## Numéro WhatsApp des commandes
