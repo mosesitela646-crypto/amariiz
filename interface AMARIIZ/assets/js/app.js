@@ -271,6 +271,9 @@ async function initCommander() {
       output.textContent = 'La quantité doit être au moins égale à 1.';
       return;
     }
+    const submitButton = form.querySelector('button[type="submit"]');
+    const whatsappWindow = window.open('about:blank','_blank');
+    if (submitButton) submitButton.disabled = true;
     try {
       const authenticated = await api('/auth/me');
       if (!['client','vendeur','admin'].includes(authenticated.role)) {
@@ -278,22 +281,32 @@ async function initCommander() {
       }
       const cart = await api('/cart');
       const selectedId = Number(variant.value);
-      const existingLine = (cart.items || []).find(item => Number(item.product_variant_id) === selectedId);
-      if (existingLine) {
-        await api('/cart/items/' + selectedId, {
-          method:'PATCH', body:JSON.stringify({quantity:Number(quantity.value)})
-        });
-      } else {
-        await addToCart(selectedId,quantity.value);
+      let selectedExists = false;
+      for (const line of (cart.items || [])) {
+        const lineId = Number(line.product_variant_id);
+        if (lineId === selectedId) {
+          selectedExists = true;
+          await api('/cart/items/' + selectedId, {
+            method:'PATCH', body:JSON.stringify({quantity:Number(quantity.value)})
+          });
+        } else {
+          await api('/cart/items/' + lineId,{method:'DELETE'});
+        }
       }
+      if (!selectedExists) await addToCart(selectedId,quantity.value);
       const data = Object.fromEntries(new FormData(form));
       data.city_id = Number(data.city_id);
       const result = await api('/orders',{method:'POST',body:JSON.stringify(data)});
       output.classList.remove('text-danger');
       output.classList.add('text-success');
       output.textContent = 'Commande créée. Ouverture de WhatsApp…';
-      window.open(result.whatsapp_url,'_blank');
+      if (whatsappWindow) {
+        whatsappWindow.location.href = result.whatsapp_url;
+      } else {
+        output.innerHTML = 'Commande créée. <a href="' + esc(result.whatsapp_url) + '" target="_blank" rel="noopener">Ouvrir WhatsApp</a>.';
+      }
     } catch (error) {
+      if (whatsappWindow) whatsappWindow.close();
       output.classList.remove('text-success');
       output.classList.add('text-danger');
       if (error.status === 401) {
@@ -301,6 +314,8 @@ async function initCommander() {
       } else {
         output.textContent = error.message;
       }
+    } finally {
+      if (submitButton) submitButton.disabled = false;
     }
   });
 }
