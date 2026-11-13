@@ -1,1 +1,143 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Administration | AMARIIZ MILK</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"><link rel="stylesheet" href="../assets/css/style.css"></head><body><div class="dashboard"><div class="container-fluid"><div class="row"><aside class="col-lg-2 sidebar"><div class="text-center mb-4"><img src="../assets/images/vache-amariiz-dark.svg?v=3" width="68" alt=""><h6 class="text-white mt-2">AMARIIZ MILK</h6><small class="text-white-50">Espace gestion</small></div><nav><a class="active" href="admin.html">Vue d'ensemble</a><a href="#produits">Produits</a><a href="#production">Production</a><a href="#stock">Stock</a><a href="#commandes">Commandes</a><a href="#ventes">Ventes</a><a href="#clients">Clients</a><a href="#distribution">Distribution</a><a href="#rapports">Rapports</a><a href="../index.html">Retour au site</a></nav></aside><main class="col-lg-10 p-4 p-xl-5"><div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4"><div><div class="eyebrow">ESPACE DE GESTION</div><h2 class="mb-0">Tableau de bord</h2></div><span class="tag">Maquette — données fictives</span></div><div class="row g-3 mb-4"><div class="col-6 col-xl-3"><div class="stat-card"><div class="stat-icon"><i class="bi bi-box-seam"></i></div><small>Références produits</small><strong>8</strong></div></div><div class="col-6 col-xl-3"><div class="stat-card"><div class="stat-icon"><i class="bi bi-receipt"></i></div><small>Demandes reçues</small><strong>12</strong></div></div><div class="col-6 col-xl-3"><div class="stat-card"><div class="stat-icon"><i class="bi bi-cash-coin"></i></div><small>Chiffre d'affaires démo</small><strong>50 000</strong><small>FC</small></div></div><div class="col-6 col-xl-3"><div class="stat-card"><div class="stat-icon"><i class="bi bi-geo-alt"></i></div><small>Zones de vente</small><strong>3</strong></div></div></div><div class="row g-3"><div class="col-xl-8"><div class="panel"><h5>Activité commerciale — illustration</h5><div class="bar-chart"><span style="height:28%"></span><span style="height:43%"></span><span style="height:36%"></span><span style="height:60%"></span><span style="height:52%"></span><span style="height:82%"></span><span style="height:94%"></span></div></div></div><div class="col-xl-4"><div class="panel h-100"><h5>Zones commerciales</h5><div class="city-list"><span>Likasi</span><span>Lubumbashi</span><span>Kolwezi</span></div><p class="small-muted mt-3">Villes mentionnées dans le document de référence.</p></div></div><div class="col-12" id="commandes"><div class="panel"><h5>Demandes récentes — exemples</h5><div class="table-responsive"><table class="table"><thead><tr><th>Référence</th><th>Produit</th><th>Format</th><th>Ville</th><th>Statut</th></tr></thead><tbody><tr><td>DEMO-001</td><td>Yaourt banane avec sucre</td><td>Petit</td><td>Lubumbashi</td><td><span class="status">Confirmée</span></td></tr><tr><td>DEMO-002</td><td>Yaourt vanille sans sucre</td><td>Grand</td><td>Likasi</td><td><span class="status pending">À confirmer</span></td></tr></tbody></table></div></div></div><div class="col-12" id="produits"><div class="panel"><h5>Catalogue et produits</h5><p class="small-muted">8 déclinaisons : composition, parfum et format.</p><a class="btn btn-outline-brand btn-sm" href="catalogue.html">Consulter le catalogue</a></div></div><div class="col-12" id="production"><div class="panel"><h5>Production et conditionnement</h5><p class="small-muted">Les volumes et équipements réels restent à renseigner.</p></div></div><div class="col-12" id="stock"><div class="panel"><h5>Disponibilité et stock</h5><p class="small-muted">Les quantités doivent être confirmées avant chaque commande.</p></div></div><div class="col-12" id="ventes"><div class="panel"><h5>Ventes et rentabilité</h5><p class="small-muted">Les coûts réels ne figurent pas dans le document ; les calculs seront alimentés par les données PHP.</p></div></div><div class="col-12" id="clients"><div class="panel"><h5>Clients et commerçants</h5><p class="small-muted">Suivi prévu des commandes directes et des ventes aux commerçants.</p></div></div><div class="col-12" id="distribution"><div class="panel"><h5>Distribution et livraisons</h5><p class="small-muted">Suivi par ville : Likasi, Lubumbashi et Kolwezi.</p></div></div><div class="col-12" id="rapports"><div class="panel"><h5>Rapports et indicateurs</h5><p class="small-muted">Demandes, ventes par format, commandes par ville et commandes répétées.</p></div></div><div class="col-12"><div class="notice">Les chiffres et lignes de commandes sont des données de démonstration. Les stocks, coûts, volumes de production et bénéfices réels ne sont pas simulés comme des faits.</div></div></div></main></div></div><script src="../assets/js/app.js"></script></body></html>
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Administration | AMARIIZ MILK</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css?v=amariiz-admin-live-20261113">
+  <style>
+    body{background:#f4f7fc;color:#142d56}
+    .admin-top{background:#fff;border-bottom:1px solid #e4eaf3;padding:16px 0}
+    .admin-brand{font-weight:900;color:#123b7c;text-decoration:none;font-size:1.25rem}
+    .admin-brand em{font-style:normal;color:#d4a83b}
+    .admin-layout{display:grid;grid-template-columns:245px minmax(0,1fr);min-height:calc(100vh - 70px)}
+    .admin-side{background:#102e60;color:#fff;padding:28px 18px}
+    .admin-side .side-caption{color:#aebfdb;font-size:.72rem;letter-spacing:.15em;font-weight:800;margin:25px 10px 10px}
+    .admin-side a{display:flex;gap:10px;align-items:center;color:#e8effb;text-decoration:none;padding:11px 12px;border-radius:10px;margin:3px 0;font-weight:650}
+    .admin-side a:hover{background:#244a83}
+    .admin-main{padding:30px;min-width:0}
+    .admin-title{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:900;color:#15376b}
+    .admin-muted{color:#71819a}
+    .admin-card,.admin-panel{background:#fff;border:1px solid #e2e9f3;border-radius:18px;box-shadow:0 8px 28px rgba(31,67,117,.05)}
+    .admin-card{padding:19px;height:100%}
+    .admin-card .metric-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#edf3ff;color:#1b4f9a;font-size:1.15rem}
+    .admin-card small{display:block;color:#73819a;margin-top:15px;font-weight:650}
+    .admin-card strong{display:block;font-size:1.65rem;margin-top:3px;color:#15376b}
+    .admin-panel{padding:22px;margin-top:22px}
+    .admin-panel h2{font-size:1.12rem;font-weight:850;margin:0;color:#183b70}
+    .admin-panel .panel-sub{color:#78869d;font-size:.88rem;margin-top:5px}
+    .admin-table{min-width:760px;margin:16px 0 0}
+    .admin-table th{font-size:.76rem;text-transform:uppercase;letter-spacing:.04em;color:#71819a;background:#f7f9fd;white-space:nowrap}
+    .admin-table td{vertical-align:middle;color:#314664;font-size:.9rem}
+    .admin-table td small{display:block;color:#7a879b;margin-top:3px}
+    .admin-status{display:inline-block;padding:5px 9px;border-radius:20px;background:#eef2f8;color:#52647d;font-size:.77rem;font-weight:750;white-space:nowrap}
+    .status-a_preparer{background:#fff3d9;color:#8d6410}
+    .status-en_livraison{background:#e7f1ff;color:#2459a0}
+    .status-livree{background:#e4f6ed;color:#21764b}
+    .status-annulee{background:#fde9e8;color:#a33d3a}
+    .review-stars{color:#d69e19;letter-spacing:1px}
+    .admin-list{list-style:none;padding:0;margin:15px 0 0}
+    .admin-list li{display:flex;justify-content:space-between;gap:15px;padding:10px 0;border-bottom:1px solid #edf1f6}
+    .admin-list li:last-child{border:0}
+    .admin-detail{background:#f7f9fd;border-radius:12px;padding:16px;margin-top:15px}
+    .admin-detail ul{margin-bottom:12px}
+    .admin-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .admin-section-anchor{scroll-margin-top:20px}
+    @media(max-width:900px){.admin-layout{grid-template-columns:1fr}.admin-side{padding:12px;display:flex;gap:7px;overflow-x:auto}.admin-side .side-caption,.admin-side .brand-block{display:none}.admin-side a{white-space:nowrap;margin:0}.admin-main{padding:18px}}
+    @media(max-width:560px){.admin-form-grid{grid-template-columns:1fr}.admin-main{padding:14px}.admin-panel{padding:15px}}
+  </style>
+</head>
+<body>
+  <header class="admin-top">
+    <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
+      <a class="admin-brand" href="../index.html">AMARIIZ <em>MILK</em> <small class="text-secondary fw-normal">/ Administration</small></a>
+      <div class="d-flex align-items-center gap-3"><span id="adminUserName" class="small fw-bold text-secondary">Administrateur</span><a href="../index.html" class="btn btn-sm btn-outline-primary">Retour au site</a></div>
+    </div>
+  </header>
+  <div class="admin-layout" id="adminApp">
+    <aside class="admin-side">
+      <div class="brand-block mb-4"><img src="../assets/images/vache-amariiz-dark.svg?v=3" width="55" alt=""><div class="fw-bold mt-2">ESPACE DE GESTION</div></div>
+      <div class="side-caption">PILOTAGE</div>
+      <a href="#overview"><i class="bi bi-speedometer2"></i> Vue d'ensemble</a>
+      <a href="#orders"><i class="bi bi-receipt"></i> Toutes les commandes</a>
+      <a href="#clients"><i class="bi bi-people"></i> Clients</a>
+      <a href="#reviews"><i class="bi bi-star"></i> Notes et avis</a>
+      <div class="side-caption">GESTION</div>
+      <a href="#promotions"><i class="bi bi-tag"></i> Promotions</a>
+      <a href="#stock"><i class="bi bi-box-seam"></i> Alertes de stock</a>
+    </aside>
+    <main class="admin-main">
+      <div id="adminAuthMessage" class="alert alert-warning" role="status"></div>
+      <section id="overview" class="admin-section-anchor">
+        <div class="d-flex justify-content-between align-items-end gap-3 flex-wrap mb-4">
+          <div><div class="text-uppercase fw-bold small text-primary mb-2">Espace de gestion</div><h1 class="admin-title mb-1">Tableau de bord</h1><p class="admin-muted mb-0">Suivi des opérations AMARIIZ MILK depuis les données enregistrées.</p></div>
+          <div class="d-flex gap-2 align-items-end flex-wrap">
+            <div><label class="form-label small mb-1" for="adminFrom">Du</label><input id="adminFrom" class="form-control" type="date"></div>
+            <div><label class="form-label small mb-1" for="adminTo">Au</label><input id="adminTo" class="form-control" type="date"></div>
+            <button id="adminApplyDates" class="btn btn-primary">Appliquer</button>
+            <button id="adminReload" class="btn btn-outline-secondary" title="Actualiser"><i class="bi bi-arrow-clockwise"></i></button>
+          </div>
+        </div>
+        <p id="adminRefreshStatus" class="small admin-muted" aria-live="polite">Chargement des données…</p>
+        <div class="row g-3">
+          <div class="col-6 col-xl-3"><div class="admin-card"><div class="metric-icon"><i class="bi bi-cash-stack"></i></div><small>Ventes nettes (hors annulations)</small><strong id="kpiSales">—</strong></div></div>
+          <div class="col-6 col-xl-3"><div class="admin-card"><div class="metric-icon"><i class="bi bi-receipt"></i></div><small>Commandes</small><strong id="kpiOrders">—</strong></div></div>
+          <div class="col-6 col-xl-3"><div class="admin-card"><div class="metric-icon"><i class="bi bi-people"></i></div><small>Comptes clients</small><strong id="kpiClients">—</strong></div></div>
+          <div class="col-6 col-xl-3"><div class="admin-card"><div class="metric-icon"><i class="bi bi-hourglass-split"></i></div><small>À préparer</small><strong id="kpiPending">—</strong></div></div>
+          <div class="col-6 col-xl-3"><div class="admin-card"><small>En livraison</small><strong id="kpiDelivery">—</strong></div></div>
+          <div class="col-6 col-xl-3"><div class="admin-card"><small>Livrées</small><strong id="kpiDelivered">—</strong></div></div>
+          <div class="col-6 col-xl-3"><div class="admin-card"><small>Annulées</small><strong id="kpiCancelled">—</strong></div></div>
+          <div class="col-6 col-xl-3"><div class="admin-card"><small>Remises promotionnelles</small><strong id="kpiDiscounts">—</strong></div></div>
+        </div>
+        <div class="row g-3">
+          <div class="col-lg-6"><div class="admin-panel"><h2>Produits les plus commandés</h2><ul class="admin-list" id="topProducts"><li>Chargement…</li></ul></div></div>
+          <div class="col-lg-6"><div class="admin-panel"><h2>Commandes par ville</h2><ul class="admin-list" id="topCities"><li>Chargement…</li></ul></div></div>
+        </div>
+      </section>
+
+      <section id="orders" class="admin-panel admin-section-anchor">
+        <div class="d-flex justify-content-between align-items-center gap-2 flex-wrap"><div><h2>Toutes les commandes</h2><p class="panel-sub">Consultez les demandes, ouvrez le détail et mettez à jour leur avancement.</p></div><i class="bi bi-receipt fs-3 text-primary"></i></div>
+        <div class="table-responsive"><table class="table admin-table"><thead><tr><th>Référence / date</th><th>Client</th><th>Ville</th><th>Total</th><th>État</th><th>Modifier l'état</th><th>Actions</th></tr></thead><tbody id="adminOrders"><tr><td colspan="7">Chargement…</td></tr></tbody></table></div>
+        <div id="orderDetail" class="admin-detail" aria-live="polite"></div>
+      </section>
+
+      <section id="clients" class="admin-panel admin-section-anchor">
+        <div><h2>Clients enregistrés</h2><p class="panel-sub">Coordonnées, nombre de commandes, valeur cumulée et dernière activité.</p></div>
+        <div class="table-responsive"><table class="table admin-table"><thead><tr><th>Client</th><th>Téléphone</th><th>Commandes</th><th>Valeur cumulée</th><th>Dernière commande</th></tr></thead><tbody id="adminClients"><tr><td colspan="5">Chargement…</td></tr></tbody></table></div>
+      </section>
+
+      <section id="reviews" class="admin-panel admin-section-anchor">
+        <div><h2>Notes et avis des clients</h2><p class="panel-sub">Les notes sont affichées lorsqu'un client laisse un avis après livraison.</p></div>
+        <div class="table-responsive"><table class="table admin-table"><thead><tr><th>Commande</th><th>Client</th><th>Note</th><th>Commentaire</th></tr></thead><tbody id="adminReviews"><tr><td colspan="4">Chargement…</td></tr></tbody></table></div>
+      </section>
+
+      <section id="promotions" class="admin-panel admin-section-anchor">
+        <div><h2>Promotions</h2><p class="panel-sub">Créez un code de réduction, définissez sa période et limitez son nombre d'utilisations.</p></div>
+        <form id="promotionForm" class="mt-3">
+          <div class="admin-form-grid">
+            <div><label class="form-label" for="promoCode">Code</label><input id="promoCode" name="code" class="form-control" required maxlength="40" placeholder="AMARIIZ10"></div>
+            <div><label class="form-label" for="promoTitle">Titre</label><input id="promoTitle" name="title" class="form-control" required placeholder="Promotion lancement"></div>
+            <div><label class="form-label" for="promoType">Type de remise</label><select id="promoType" name="discount_type" class="form-select"><option value="percent">Pourcentage</option><option value="fixed">Montant fixe (FC)</option></select></div>
+            <div><label class="form-label" for="promoValue">Valeur de la remise</label><input id="promoValue" name="discount_value" type="number" min="0.01" step="0.01" class="form-control" required></div>
+            <div><label class="form-label" for="promoStart">Début</label><input id="promoStart" name="starts_at" type="datetime-local" class="form-control" required></div>
+            <div><label class="form-label" for="promoEnd">Fin</label><input id="promoEnd" name="ends_at" type="datetime-local" class="form-control" required></div>
+            <div><label class="form-label" for="promoMax">Nombre maximal d'utilisations (facultatif)</label><input id="promoMax" name="max_uses" type="number" min="1" class="form-control" placeholder="Illimité"></div>
+            <div><label class="form-label" for="promoDescription">Description (facultative)</label><input id="promoDescription" name="description" class="form-control" placeholder="Conditions de la promotion"></div>
+          </div>
+          <button class="btn btn-primary mt-3" type="submit"><i class="bi bi-plus-circle me-1"></i> Créer la promotion</button>
+        </form>
+        <div class="table-responsive"><table class="table admin-table"><thead><tr><th>Code / titre</th><th>Remise</th><th>Période</th><th>Utilisations</th><th>État</th><th>Action</th></tr></thead><tbody id="adminPromotions"><tr><td colspan="6">Chargement…</td></tr></tbody></table></div>
+      </section>
+
+      <section id="stock" class="admin-panel admin-section-anchor">
+        <div><h2>Alertes de stock</h2><p class="panel-sub">Variantes dont la quantité est égale ou inférieure au seuil configuré.</p></div>
+        <div class="table-responsive"><table class="table admin-table"><thead><tr><th>Produit</th><th>Variante</th><th>Quantité</th><th>Seuil</th></tr></thead><tbody id="adminStock"><tr><td colspan="4">Chargement…</td></tr></tbody></table></div>
+      </section>
+    </main>
+  </div>
+  <script src="../assets/js/app.js?v=amariiz-admin-live-20261113"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
