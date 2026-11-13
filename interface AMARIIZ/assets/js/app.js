@@ -431,6 +431,9 @@ async function initAdminDashboard() {
         setHtml('orderDetail','<div class="detail-head"><strong>Commande #' + esc(order.id) + ' · ' + esc(order.customer_name) +
           '</strong><button type="button" class="btn-close" data-close-detail aria-label="Fermer"></button></div>' +
           '<p>' + esc(order.phone) + ' · ' + esc(order.city_name) + ' · ' + fc(order.total) + '</p>' +
+          '<p><strong>Adresse :</strong> ' + esc(order.address || '—') + '<br><strong>Paiement :</strong> ' +
+          esc(order.payment?.method || '—') + ' · ' + esc(order.payment?.status || '—') +
+          '<br><strong>Remise :</strong> ' + fc(order.discount_amount || 0) + '</p>' +
           '<h6>Articles</h6><ul>' + items + '</ul><h6>Historique des statuts</h6><ul>' + history + '</ul>');
       } else if (toggle) {
         await api('/admin/promotions/' + toggle.dataset.promoToggle,{
