@@ -10,6 +10,7 @@ Base : `/api/v1`. Toutes les réponses sont JSON : `success`, `data`, `message`,
 | GET | `/catalogue/products/{id}` | — |
 | GET | `/catalogue/products/{id}/flavors` | — |
 | GET | `/cities` | — |
+| GET | `/promotions` | Codes promotionnels actifs et valides |
 
 Chaque variante du catalogue fournit : `variant_id`, `composition`, `flavor`, `format`, `price` et `stock_qty`.
 
@@ -25,6 +26,10 @@ Chaque variante du catalogue fournit : `variant_id`, `composition`, `flavor`, `f
 | POST | `/admin/cities` | `name`, `delivery_fee`, `delivery_delay_hours`, `is_active?` |
 | PATCH | `/admin/cities/{id}` | `name?`, `delivery_fee?`, `delivery_delay_hours?`, `is_active?` |
 | DELETE | `/admin/cities/{id}` | Désactive la ville |
+| GET | `/admin/clients` | Liste des clients et activité, sans données de mot de passe |
+| GET | `/admin/promotions` | Toutes les promotions |
+| POST | `/admin/promotions` | `code`, `title`, `discount_type`, `discount_value`, `starts_at`, `ends_at`, `description?`, `max_uses?` |
+| PATCH | `/admin/promotions/{id}` | Modification partielle, dont `is_active` |
 | GET | `/admin/stock/low` | — |
 | GET | `/admin/dashboard?from=AAAA-MM-JJ&to=AAAA-MM-JJ` | Période facultative |
 | GET | `/admin/reviews` | — |
@@ -40,7 +45,9 @@ Chaque variante du catalogue fournit : `variant_id`, `composition`, `flavor`, `f
 
 ## Avis (Bearer client)
 
-`POST /orders/{id}/review` avec `{ "rating": 5, "comment": "Très bon." }`. La commande doit être livrée et appartenir au numéro de téléphone du compte connecté.
+`POST /orders/{id}/review` avec `{ "rating": 5, "comment": "Très bon." }`. La commande doit être livrée et appartenir au numéro de téléphone du compte connecté. Les avis sont consultables par l'administrateur via `/admin/reviews`.
+
+La création d'une commande exige un compte connecté (Bearer client, vendeur ou admin). Le corps peut inclure `promotion_code` ; le backend vérifie sa validité et enregistre la remise avec la commande.
 
 ## Exemple de réponse
 
