@@ -74,7 +74,7 @@ final class GestionController
         $stmt->execute($p);$summary=$stmt->fetch();
         $summary['clients_count']=(int)$this->pdo->query("SELECT COUNT(*) FROM users WHERE role='client'")->fetchColumn();
         $data=['summary'=>$summary];
-        $stmt=$this->pdo->prepare("SELECT p.name,COUNT(*) AS quantity FROM order_items oi JOIN orders o ON o.id=oi.order_id JOIN product_variants pv ON pv.id=oi.product_variant_id JOIN products p ON p.id=pv.product_id WHERE o.created_at BETWEEN :from AND :to AND o.status<>'annulee' GROUP BY p.id,p.name ORDER BY quantity DESC LIMIT 5");$stmt->execute($p);$data['top_products']=$stmt->fetchAll();
+        $stmt=$this->pdo->prepare("SELECT p.name,SUM(oi.quantity) AS quantity FROM order_items oi JOIN orders o ON o.id=oi.order_id JOIN product_variants pv ON pv.id=oi.product_variant_id JOIN products p ON p.id=pv.product_id WHERE o.created_at BETWEEN :from AND :to AND o.status<>'annulee' GROUP BY p.id,p.name ORDER BY quantity DESC LIMIT 5");$stmt->execute($p);$data['top_products']=$stmt->fetchAll();
         $stmt=$this->pdo->prepare("SELECT c.name,COUNT(*) AS orders_count FROM orders o JOIN cities c ON c.id=o.city_id WHERE o.created_at BETWEEN :from AND :to AND o.status<>'annulee' GROUP BY c.id,c.name ORDER BY orders_count DESC LIMIT 5");$stmt->execute($p);$data['top_cities']=$stmt->fetchAll();Response::success($data,'Tableau de bord disponible.');
     }
 
