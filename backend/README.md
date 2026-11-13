@@ -28,3 +28,15 @@ Backend REST JSON en PHP 8 et MySQL, compatible XAMPP/Laragon.
 Les données de démonstration Dev 2 se trouvent dans `database/seeds/299_catalogue_villes_test.sql`.
 
 La documentation des routes destinées au frontend se trouve dans `docs/API.md`.
+
+
+## Numéro WhatsApp des commandes
+
+Le lien de confirmation WhatsApp est construit par `modules/commande/WhatsAppService.php`.
+Le numéro de destination se configure dans `.env` avec le format international, chiffres uniquement (sans `+` ni espaces).
+
+```ini
+WHATSAPP_NUMBER=243999226344
+```
+
+Numéro de destination actuellement configuré pour les demandes de commande : **+243 999 226 344**.
