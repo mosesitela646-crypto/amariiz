@@ -29,7 +29,9 @@ final class GestionController
     {
         $this->auth->requireRoles(['vendeur','admin']);$stmt=$this->pdo->prepare('SELECT o.*,c.name AS city_name FROM orders o JOIN cities c ON c.id=o.city_id WHERE o.id=:id');$stmt->execute(['id'=>(int)$params['id']]);$order=$stmt->fetch();if(!$order)Response::error('Commande introuvable.',404);
         $stmt=$this->pdo->prepare('SELECT oi.quantity,oi.unit_price,p.name,pv.composition,pv.flavor,pv.format FROM order_items oi JOIN product_variants pv ON pv.id=oi.product_variant_id JOIN products p ON p.id=pv.product_id WHERE oi.order_id=:id');$stmt->execute(['id'=>$order['id']]);$order['items']=$stmt->fetchAll();
-        $stmt=$this->pdo->prepare('SELECT h.status,h.created_at,u.name AS changed_by_name FROM order_status_history h JOIN users u ON u.id=h.changed_by WHERE h.order_id=:id ORDER BY h.created_at');$stmt->execute(['id'=>$order['id']]);$order['history']=$stmt->fetchAll();Response::success($order,'Détail de la commande.');
+        $stmt=$this->pdo->prepare('SELECT h.status,h.created_at,u.name AS changed_by_name FROM order_status_history h JOIN users u ON u.id=h.changed_by WHERE h.order_id=:id ORDER BY h.created_at');$stmt->execute(['id'=>$order['id']]);$order['history']=$stmt->fetchAll();
+        $stmt=$this->pdo->prepare('SELECT status,method FROM payments WHERE order_id=:id');$stmt->execute(['id'=>$order['id']]);$order['payment']=$stmt->fetch() ?: null;
+        Response::success($order,'Détail de la commande.');
     }
 
     public function updateStatus(array $params): never
